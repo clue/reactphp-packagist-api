@@ -1,0 +1,24 @@
+{
+    "name": "clue/packagist-react",
+    "description": "Simple async access to packagist.org's API, like listing project details, number of downloads, etc.",
+    "require": {
+        "knplabs/packagist-api": "dev-master",
+        "clue/http-react": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christian Lück",
+            "email": "christian@lueck.tv"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Clue\\Packagist\\React": "src/" }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/clue/http-react"
+        }
+    ]
+}
