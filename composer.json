@@ -15,6 +15,6 @@
         "clue/buzz-react": "0.1.*"
     },
     "autoload": {
-        "psr-0": { "Clue\\Packagist\\React": "src/" }
+        "psr-4": { "Clue\\Packagist\\React\\": "src/" }
     }
 }

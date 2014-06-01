@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "000642f675bfa3ecef9c10945aaa26fa",
+    "hash": "f30d71a51043db78abc46bdf2f9584b7",
     "packages": [
         {
             "name": "clue/buzz-react",
