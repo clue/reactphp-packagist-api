@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Clue\Packagist\React\Client;
+use Clue\React\Packagist\Api\Client;
 use Packagist\Api\Result\Package;
 use Clue\React\Buzz\Browser;
 

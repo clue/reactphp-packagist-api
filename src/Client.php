@@ -1,6 +1,6 @@
 <?php
 
-namespace Clue\Packagist\React;
+namespace Clue\React\Packagist\Api;
 
 use Packagist\Api\Result\Factory;
 use Clue\React\Buzz\Browser;
