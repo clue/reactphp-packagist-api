@@ -1,10 +1,8 @@
 {
     "name": "clue/packagist-react",
     "description": "Simple async access to packagist.org's API, like listing project details, number of downloads, etc.",
-    "require": {
-        "knplabs/packagist-api": "~1.0",
-        "clue/buzz-react": "0.1.*"
-    },
+    "keywords": ["packagist", "composer packages", "ReactPHP", "async"],
+    "homepage": "https://github.com/clue/packagist-react",
     "license": "MIT",
     "authors": [
         {
@@ -12,6 +10,10 @@
             "email": "christian@lueck.tv"
         }
     ],
+    "require": {
+        "knplabs/packagist-api": "~1.0",
+        "clue/buzz-react": "0.1.*"
+    },
     "autoload": {
         "psr-0": { "Clue\\Packagist\\React": "src/" }
     }
