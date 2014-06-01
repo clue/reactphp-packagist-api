@@ -4,13 +4,10 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use Clue\Packagist\React\Client;
 use Packagist\Api\Result\Package;
-use Clue\Http\React\Factory;
+use Clue\React\Buzz\Browser;
 
 $loop = React\EventLoop\Factory::create();
-
-$factory = new Factory($loop);
-$browser = $factory->createClient();
-
+$browser = new Browser($loop);
 $client = new Client($browser);
 
 $client->search('packagist')->then(function ($result) {

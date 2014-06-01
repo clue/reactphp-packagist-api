@@ -3,8 +3,8 @@
 namespace Clue\Packagist\React;
 
 use Packagist\Api\Result\Factory;
-use Clue\Http\React\Client\Message\Response\BufferedResponse;
-use Clue\Http\React\Client\Browser;
+use Clue\React\Buzz\Browser;
+use Clue\React\Buzz\Message\Response;
 
 class Client
 {
@@ -30,8 +30,8 @@ class Client
         $that = $this;
 
         $fetch = function($url) use (&$results, $that, &$fetch) {
-            return $that->request($url)->then(function (BufferedResponse $response) use (&$results, $that, $fetch) {
-                $parsed = $that->parse($response->getBody());
+            return $that->request($url)->then(function (Response $response) use (&$results, $that, $fetch) {
+                $parsed = $that->parse((string)$response->getBody());
                 $results = array_merge($results, $that->create($parsed));
 
                 if (isset($parsed['next'])) {
@@ -70,8 +70,8 @@ class Client
         $response = $this->request($url);
         $that     = $this;
 
-        return $response->then(function (BufferedResponse $response) use ($that) {
-            return $that->create($that->parse($response->getBody()));
+        return $response->then(function (Response $response) use ($that) {
+            return $that->create($that->parse((string)$response->getBody()));
         });
     }
 

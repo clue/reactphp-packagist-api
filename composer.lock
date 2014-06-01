@@ -3,33 +3,34 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "edbd6ace56bee877d261a4bde894cd92",
+    "hash": "a9a7b58f6fac9746a097aca20f2dc774",
     "packages": [
         {
-            "name": "clue/http-react",
-            "version": "dev-master",
+            "name": "clue/buzz-react",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/clue/http-react.git",
-                "reference": "0ced061ed6ae74c9897c539e63e641b152178943"
+                "url": "https://github.com/clue/reactphp-buzz.git",
+                "reference": "f4675b81a172cc52adeb7617a34d75354614c7b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clue/http-react/zipball/0ced061ed6ae74c9897c539e63e641b152178943",
-                "reference": "0ced061ed6ae74c9897c539e63e641b152178943",
+                "url": "https://api.github.com/repos/clue/reactphp-buzz/zipball/f4675b81a172cc52adeb7617a34d75354614c7b7",
+                "reference": "f4675b81a172cc52adeb7617a34d75354614c7b7",
                 "shasum": ""
             },
             "require": {
-                "react/event-loop": "0.3.*",
-                "react/http-client": "0.3.*",
-                "react/promise": "~1"
+                "react/event-loop": "0.3.*|0.4.*",
+                "react/http-client": "0.3.*|0.4.*",
+                "react/promise": "1.*|2.*"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Clue\\Http\\React": "src/"
+                "psr-4": {
+                    "Clue\\React\\Buzz\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -39,12 +40,15 @@
                     "email": "christian@lueck.tv"
                 }
             ],
-            "description": "Simple async HTTP client for fetching URLs, talking to APIs, downloads, redirects, cache, etc.",
-            "support": {
-                "source": "https://github.com/clue/http-react/tree/master",
-                "issues": "https://github.com/clue/http-react/issues"
-            },
-            "time": "2013-09-01 18:23:26"
+            "description": "Simple async HTTP client for fetching URLs, talking to RESTful APIs, downloading, following redirects etc.",
+            "homepage": "https://github.com/clue/reactphp-buzz",
+            "keywords": [
+                "HTTP requests",
+                "async",
+                "http client",
+                "reactphp"
+            ],
+            "time": "2014-05-31 18:30:23"
         },
         {
             "name": "doctrine/inflector",
@@ -562,8 +566,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "knplabs/packagist-api": 20,
-        "clue/http-react": 20
+        "knplabs/packagist-api": 20
     },
     "platform": [
 

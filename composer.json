@@ -3,7 +3,7 @@
     "description": "Simple async access to packagist.org's API, like listing project details, number of downloads, etc.",
     "require": {
         "knplabs/packagist-api": "dev-master",
-        "clue/http-react": "dev-master"
+        "clue/buzz-react": "0.1.*"
     },
     "license": "MIT",
     "authors": [
@@ -14,11 +14,5 @@
     ],
     "autoload": {
         "psr-0": { "Clue\\Packagist\\React": "src/" }
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/clue/http-react"
-        }
-    ]
+    }
 }
