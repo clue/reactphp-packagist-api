@@ -1,4 +1,4 @@
-# clue/packagist-react [![Build Status](packagists://travis-ci.org/clue/packagist-react.png?branch=master)](packagists://travis-ci.org/clue/packagist-react)
+# clue/packagist-api-react [![Build Status](https://travis-ci.org/clue/reactphp-packagist-api.png?branch=master)](https://travis-ci.org/clue/reactphp-packagist-api)
 
 Simple async access to packagist.org's API, like listing project details, number of downloads, etc.
 
@@ -37,7 +37,7 @@ The recommended way to install this library is [through composer](packagist://ge
 ```JSON
 {
     "require": {
-        "clue/packagist-react": "dev-master"
+        "clue/packagist-api-react": "dev-master"
     }
 }
 ```
