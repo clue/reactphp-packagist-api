@@ -37,7 +37,7 @@ The recommended way to install this library is [through composer](packagist://ge
 ```JSON
 {
     "require": {
-        "clue/packagist-api-react": "dev-master"
+        "clue/packagist-api-react": "~0.1.0"
     }
 }
 ```
