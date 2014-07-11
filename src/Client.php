@@ -29,7 +29,7 @@ class Client
         $url = $this->url('/search.json?' . http_build_query($filters));
         $that = $this;
 
-        $fetch = function($url) use (&$results, $that, &$fetch) {
+        $fetch = function ($url) use (&$results, $that, &$fetch) {
             return $that->request($url)->then(function (Response $response) use (&$results, $that, $fetch) {
                 $parsed = $that->parse((string)$response->getBody());
                 $results = array_merge($results, $that->create($parsed));
@@ -75,7 +75,7 @@ class Client
         });
     }
 
-    protected function request($url)
+    public function request($url)
     {
         return $this->http->get($url);
     }
