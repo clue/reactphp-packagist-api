@@ -1,9 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "76f20eff09312708956e743141f440e8",
+    "hash": "f77da856893539e2500f2e964dc71e4f",
     "packages": [
         {
             "name": "clue/buzz-react",
