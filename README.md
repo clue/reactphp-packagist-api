@@ -4,7 +4,7 @@ Simple async access to packagist.org's API, like listing project details, number
 
 This is an async version of [KnpLab's excellent `packagist-api`](https://github.com/KnpLabs/packagist-api),
 but built upon [React PHP's non-blocking `event-loop`](https://github.com/reactphp/event-loop).
-It uses the [async HTTP client library `buzz-react`](https://github.com/clue/reactphp-buzz) to process
+It uses the [async HTTP client library `buzz-react`](https://github.com/clue/php-buzz-react) to process
 any number of requests in parallel.
 
 In a nutshell, it allows you to issue multiple requests to the packagist API in parallel and process them out of order
