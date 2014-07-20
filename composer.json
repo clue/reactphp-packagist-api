@@ -11,6 +11,7 @@
         }
     ],
     "require": {
+        "php": ">=5.3",
         "knplabs/packagist-api": "~1.0",
         "clue/buzz-react": "0.1.*"
     },
