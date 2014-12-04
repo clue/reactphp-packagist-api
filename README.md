@@ -29,6 +29,8 @@ $client->get('clue/phar-composer')->then(function (Package $package) {
 
 ```
 
+See also the [examples](examples).
+
 ## Install
 
 The recommended way to install this library is [through composer](https://getcomposer.org).
