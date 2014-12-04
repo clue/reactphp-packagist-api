@@ -4,26 +4,29 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "778191e1da7dac9a22f255e4249dd01d",
+    "hash": "b5e6827c17559b44198a312c939dffc5",
     "packages": [
         {
             "name": "clue/buzz-react",
-            "version": "v0.1.1",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/clue/reactphp-buzz.git",
-                "reference": "f4675b81a172cc52adeb7617a34d75354614c7b7"
+                "url": "https://github.com/clue/php-buzz-react.git",
+                "reference": "8eb4c8167262586a941c49141b3ef00604c8c328"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clue/reactphp-buzz/zipball/f4675b81a172cc52adeb7617a34d75354614c7b7",
-                "reference": "f4675b81a172cc52adeb7617a34d75354614c7b7",
+                "url": "https://api.github.com/repos/clue/php-buzz-react/zipball/8eb4c8167262586a941c49141b3ef00604c8c328",
+                "reference": "8eb4c8167262586a941c49141b3ef00604c8c328",
                 "shasum": ""
             },
             "require": {
+                "php": ">=5.3",
+                "react/dns": "0.3.*|0.4.*",
                 "react/event-loop": "0.3.*|0.4.*",
                 "react/http-client": "0.3.*|0.4.*",
-                "react/promise": "1.*|2.*"
+                "react/promise": "1.*|2.*",
+                "react/socket-client": "0.3.*|0.4.*"
             },
             "type": "library",
             "autoload": {
@@ -42,14 +45,14 @@
                 }
             ],
             "description": "Simple async HTTP client for fetching URLs, talking to RESTful APIs, downloading, following redirects etc.",
-            "homepage": "https://github.com/clue/reactphp-buzz",
+            "homepage": "https://github.com/clue/php-buzz-react",
             "keywords": [
                 "HTTP requests",
                 "async",
                 "http client",
                 "reactphp"
             ],
-            "time": "2014-05-31 18:30:23"
+            "time": "2014-11-30 00:51:18"
         },
         {
             "name": "doctrine/inflector",
@@ -559,20 +562,13 @@
             "time": "2013-07-21 12:12:18"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": [],
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.3"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
