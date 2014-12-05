@@ -12,7 +12,6 @@ whenever their results arrive - while trying to hide all the nifty details of as
 On top of that it provides a very easy to use API, very much similar to the original `packagist-api`,
 enriched with the comfort of [React PHP's Promises/A](https://github.com/reactphp/promise).
 
-
 > Note: This project is in beta stage! Feel free to report any issues you encounter.
 
 ## Quickstart example
@@ -30,19 +29,6 @@ $client->get('clue/phar-composer')->then(function (Package $package) {
 ```
 
 See also the [examples](examples).
-
-## Install
-
-The recommended way to install this library is [through composer](https://getcomposer.org).
-[New to composer?](https://getcomposer.org/doc/00-intro.md)
-
-```JSON
-{
-    "require": {
-        "clue/packagist-api-react": "~0.1.0"
-    }
-}
-```
 
 ## Usage
 
@@ -105,7 +91,19 @@ The `getDescription()` method can be used to the package description.
 
 See the class outline for all available methods.
 
+## Install
+
+The recommended way to install this library is [through composer](https://getcomposer.org).
+[New to composer?](https://getcomposer.org/doc/00-intro.md)
+
+```JSON
+{
+    "require": {
+        "clue/packagist-api-react": "~0.1.0"
+    }
+}
+```
+
 ## License
 
 MIT
-
