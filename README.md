@@ -20,12 +20,15 @@ Once [installed](#install), you can use the following code to fetch package
 information from packagist.org:
 
 ```php
+$loop = React\EventLoop\Factory::create();
+$browser = new Clue\React\Buzz\Browser($loop);
 $client = new Client($browser);
 
 $client->get('clue/phar-composer')->then(function (Package $package) {
     var_dump($package->getName(), $package->getDescription());
 });
 
+$loop->run();
 ```
 
 See also the [examples](examples).
@@ -39,7 +42,7 @@ It requires a `Browser` object bound to the main `EventLoop` in order to handle 
 
 ```php
 $loop = React\EventLoop\Factory::create();
-$browser = Clue\React\Buzz\Browser($loop);
+$browser = new Clue\React\Buzz\Browser($loop);
 
 $client = new Client($browser);
 ```
