@@ -38,7 +38,9 @@ See also the [examples](examples).
 ### Client
 
 The `Client` is responsible for assembling and sending HTTP requests to the remote Packagist API.
-It requires a `Browser` object bound to the main `EventLoop` in order to handle async requests:
+It requires a [`Browser`](https://github.com/clue/php-buzz-react#browser) object
+bound to the main [`EventLoop`](https://github.com/reactphp/event-loop#usage)
+in order to handle async requests:
 
 ```php
 $loop = React\EventLoop\Factory::create();
@@ -47,11 +49,18 @@ $browser = new Clue\React\Buzz\Browser($loop);
 $client = new Client($browser);
 ```
 
+If you need custom DNS or proxy settings, you can explicitly pass a
+custom [`Browser`](https://github.com/clue/php-buzz-react#browser) instance.
+
+#### Processing
+
 All public methods on the `Client` resemble the API provided by [KnpLab's `packagist-api`](https://github.com/KnpLabs/packagist-api),
 except for an async shift in their return values.
 Sending requests is async (non-blocking), so you can actually send multiple requests in parallel.
 Packagist will respond to each request with a response message, the order is not guaranteed.
 Sending requests uses a [Promise](https://github.com/reactphp/promise)-based interface that makes it easy to react to when a request is fulfilled (i.e. either successfully resolved or rejected with an error).
+
+#### search()
 
 The `search($query, $filters = array())` method can be used to search packages matching the given query string and optionally matching the given filter parameter.
 It resolves with an array containing zero or more `Package` objects.
@@ -64,6 +73,8 @@ $client->search('packagist')->then(function ($results) {
 });
 ```
 
+#### get()
+
 The `get($name)` method can be used to get package details for the given package name.
 It resolves with a single `Package` object.
 
@@ -72,6 +83,8 @@ $client->get('clue/packagist-api-react')->then(function (Package $package) {
     echo $package->getDescription();
 });
 ```
+
+#### all()
 
 The `all($filters = array())` method an be used to list all package names, optionally matching the given filter parameter.
 It resolves with an array of package names.
@@ -88,11 +101,15 @@ The `Package` class represents information about a given composer package.
 This class is part of the underlying [KnpLab/packagist-api](https://github.com/KnpLabs/packagist-api),
 its full name is actually `Packagist\Api\Result\Package`.
 
+See its class outline for all available methods.
+
+#### getName()
+
 The `getName()` method can be used to get the package name.
 
-The `getDescription()` method can be used to the package description.
+#### getDescription()
 
-See the class outline for all available methods.
+The `getDescription()` method can be used to the package description.
 
 ## Install
 
