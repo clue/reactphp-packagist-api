@@ -4,7 +4,7 @@ namespace Clue\React\Packagist\Api;
 
 use Packagist\Api\Result\Factory;
 use Clue\React\Buzz\Browser;
-use Clue\React\Buzz\Message\Response;
+use Psr\Http\Message\ResponseInterface;
 
 class Client
 {
@@ -30,7 +30,7 @@ class Client
         $that = $this;
 
         $fetch = function ($url) use (&$results, $that, &$fetch) {
-            return $that->request($url)->then(function (Response $response) use (&$results, $that, $fetch) {
+            return $that->request($url)->then(function (ResponseInterface $response) use (&$results, $that, $fetch) {
                 $parsed = $that->parse((string)$response->getBody());
                 $results = array_merge($results, $that->create($parsed));
 
@@ -70,7 +70,7 @@ class Client
         $response = $this->request($url);
         $that     = $this;
 
-        return $response->then(function (Response $response) use ($that) {
+        return $response->then(function (ResponseInterface $response) use ($that) {
             return $that->create($that->parse((string)$response->getBody()));
         });
     }

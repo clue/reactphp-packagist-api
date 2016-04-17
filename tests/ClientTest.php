@@ -2,9 +2,8 @@
 
 use Clue\React\Packagist\Api\Client;
 use React\Promise\Deferred;
-use Clue\React\Buzz\Message\Response;
-use Clue\React\Buzz\Message\Headers;
-use Clue\React\Buzz\Message\Body;
+use RingCentral\Psr7\Response;
+use React\Promise;
 
 class ClientTest extends TestCase
 {
@@ -75,9 +74,10 @@ class ClientTest extends TestCase
 
     private function createResponsePromise($fakeResponseBody)
     {
-        $d = new Deferred();
-        $d->resolve(new Response('HTTP/1.0', 200, 'OK', new Headers(), new Body($fakeResponseBody)));
-        return $d->promise();
+        $response = $this->getMock('Psr\Http\Message\ResponseInterface');
+        $response->expects($this->once())->method('getBody')->willReturn($fakeResponseBody);
+
+        return Promise\resolve($response);
     }
 
     private function createRejectedPromise($reason)
