@@ -17,7 +17,7 @@ enriched with the comfort of [React PHP's Promises/A](https://github.com/reactph
 * [Quickstart example](#quickstart-example)
 * [Usage](#usage)
   * [Client](#client)
-    * [Processing](#processing)
+    * [Promises](#promises)
     * [search()](#search)
     * [get()](#get)
     * [all()](#all)
@@ -64,13 +64,13 @@ $browser = new Clue\React\Buzz\Browser($loop);
 $client = new Client($browser);
 ```
 
-If you need custom DNS or proxy settings, you can explicitly pass a
+If you need custom DNS, SSL/TLS or proxy settings, you can explicitly pass a
 custom [`Browser`](https://github.com/clue/php-buzz-react#browser) instance.
 
-#### Processing
+#### Promises
 
 All public methods on the `Client` resemble the API provided by [KnpLab's `packagist-api`](https://github.com/KnpLabs/packagist-api),
-except for an async shift in their return values.
+except for an async shift in their return values:
 Sending requests is async (non-blocking), so you can actually send multiple requests in parallel.
 Packagist will respond to each request with a response message, the order is not guaranteed.
 Sending requests uses a [Promise](https://github.com/reactphp/promise)-based interface that makes it easy to react to when a request is fulfilled (i.e. either successfully resolved or rejected with an error).
