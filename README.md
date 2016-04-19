@@ -27,8 +27,6 @@ enriched with the comfort of [React PHP's Promises/A](https://github.com/reactph
 * [Install](#install)
 * [License](#license)
 
-> Note: This project is in beta stage! Feel free to report any issues you encounter.
-
 ## Quickstart example
 
 Once [installed](#install), you can use the following code to fetch package
@@ -128,16 +126,16 @@ The `getDescription()` method can be used to the package description.
 
 ## Install
 
-The recommended way to install this library is [through composer](https://getcomposer.org).
-[New to composer?](https://getcomposer.org/doc/00-intro.md)
+The recommended way to install this library is [through Composer](https://getcomposer.org).
+[New to Composer?](https://getcomposer.org/doc/00-intro.md)
 
-```JSON
-{
-    "require": {
-        "clue/packagist-api-react": "~0.1.0"
-    }
-}
+This will install the latest supported version:
+
+```bash
+$ composer require clue/packagist-api-react:^1.0
 ```
+
+See also the [CHANGELOG](CHANGELOG.md) for details about version upgrades.
 
 ## License
 

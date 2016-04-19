@@ -1,8 +1,12 @@
-# CHANGELOG
+# Changelog
 
-This file is a manually maintained list of changes for each release. Feel free
-to add your changes here when sending pull requests. Also send corrections if
-you spot any mistakes.
+## 1.0.0 (2016-04-19)
+
+* First stable release, now following SemVer.
+
+* Improved documentation, project structure and test suite.
+
+> Contains no other functional changes, so it's actually fully compatible with the v0.1.0 release.
 
 ## 0.1.0 (2014-07-11)
 
