@@ -12,6 +12,21 @@ whenever their results arrive - while trying to hide all the nifty details of as
 On top of that it provides a very easy to use API, very much similar to the original `packagist-api`,
 enriched with the comfort of [React PHP's Promises/A](https://github.com/reactphp/promise).
 
+**Table of Contents**
+
+* [Quickstart example](#quickstart-example)
+* [Usage](#usage)
+  * [Client](#client)
+    * [Processing](#processing)
+    * [search()](#search)
+    * [get()](#get)
+    * [all()](#all)
+  * [Package](#package)
+    * [getName()](#getname)
+    * [getDescription()](#getdescription)
+* [Install](#install)
+* [License](#license)
+
 > Note: This project is in beta stage! Feel free to report any issues you encounter.
 
 ## Quickstart example
