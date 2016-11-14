@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0 (2016-11-14)
+
+* Maintenance: Support both clue/buzz-react ^1.0 and ^0.5
+  (#9 by @WyriHaximus)
+
 ## 1.0.0 (2016-04-19)
 
 * First stable release, now following SemVer.
