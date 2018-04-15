@@ -1,8 +1,10 @@
 <?php
 
+use PHPUnit\Framework\TestCase as BaseTestCase;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
-class TestCase extends PHPUnit_Framework_TestCase
+class TestCase extends BaseTestCase
 {
     protected function expectCallableOnce()
     {
@@ -44,12 +46,9 @@ class TestCase extends PHPUnit_Framework_TestCase
         return $mock;
     }
 
-    /**
-     * @link https://github.com/reactphp/react/blob/master/tests/React/Tests/Socket/TestCase.php (taken from reactphp/react)
-     */
     protected function createCallableMock()
     {
-        return $this->getMock('CallableStub');
+        return $this->getMockBuilder('stdClass')->setMethods(array('__invoke'))->getMock();
     }
 
     protected function expectPromiseResolve($promise)
@@ -70,11 +69,3 @@ class TestCase extends PHPUnit_Framework_TestCase
         return $promise;
     }
 }
-
-class CallableStub
-{
-    public function __invoke()
-    {
-    }
-}
-

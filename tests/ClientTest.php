@@ -82,7 +82,7 @@ class ClientTest extends TestCase
 
     private function createResponsePromise($fakeResponseBody)
     {
-        $response = $this->getMock('Psr\Http\Message\ResponseInterface');
+        $response = $this->getMockBuilder('Psr\Http\Message\ResponseInterface')->getMock();
         $response->expects($this->once())->method('getBody')->willReturn($fakeResponseBody);
 
         return Promise\resolve($response);
