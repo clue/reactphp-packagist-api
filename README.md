@@ -25,6 +25,7 @@ enriched with the comfort of [React PHP's Promises/A](https://github.com/reactph
     * [getName()](#getname)
     * [getDescription()](#getdescription)
 * [Install](#install)
+* [Tests](#tests)
 * [License](#license)
 
 ## Quickstart example
@@ -136,6 +137,21 @@ $ composer require clue/packagist-api-react:^1.1
 ```
 
 See also the [CHANGELOG](CHANGELOG.md) for details about version upgrades.
+
+## Tests
+
+To run the test suite, you first need to clone this repo and then install all
+dependencies [through Composer](https://getcomposer.org):
+
+```bash
+$ composer install
+```
+
+To run the test suite, go to the project root and run:
+
+```bash
+$ php vendor/bin/phpunit
+```
 
 ## License
 
