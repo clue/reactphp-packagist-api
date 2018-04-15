@@ -1,9 +1,17 @@
 # Changelog
 
+## 1.2.0 (2018-04-15)
+
+*   Feature: Forward compatibility with updated clue/buzz-react.
+    (#11 by @clue)
+
+*   Improve test suite by adding PHPUnit to require-dev and test against legacy PHP 5.3 through PHP 7.2.
+    (#10 by @clue)
+
 ## 1.1.0 (2016-11-14)
 
-* Maintenance: Support both clue/buzz-react ^1.0 and ^0.5
-  (#9 by @WyriHaximus)
+*   Feature: Support both clue/buzz-react ^1.0 and ^0.5.
+    (#9 by @WyriHaximus)
 
 ## 1.0.0 (2016-04-19)
 
