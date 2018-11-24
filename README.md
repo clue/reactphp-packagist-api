@@ -1,16 +1,16 @@
-# clue/packagist-api-react [![Build Status](https://travis-ci.org/clue/php-packagist-api-react.svg?branch=master)](https://travis-ci.org/clue/php-packagist-api-react)
+# clue/reactphp-packagist-api [![Build Status](https://travis-ci.org/clue/reactphp-packagist-api.svg?branch=master)](https://travis-ci.org/clue/reactphp-packagist-api)
 
-Simple async access to packagist.org's API, like listing project details, number of downloads, etc.
+Simple async access to packagist.org's API, like listing project details, number of downloads etc.,
+built on top of [ReactPHP](https://reactphp.org/).
 
 This is an async version of [KnpLab's excellent `packagist-api`](https://github.com/KnpLabs/packagist-api),
-but built upon [React PHP's non-blocking `event-loop`](https://github.com/reactphp/event-loop).
-It uses the [async HTTP client library `buzz-react`](https://github.com/clue/php-buzz-react) to process
+but built upon [ReactPHP's non-blocking `event-loop`](https://github.com/reactphp/event-loop).
+It uses the [async HTTP client library `clue/reactphp-buzz`](https://github.com/clue/reactphp-buzz) to process
 any number of requests in parallel.
-
 In a nutshell, it allows you to issue multiple requests to the packagist API in parallel and process them out of order
 whenever their results arrive - while trying to hide all the nifty details of async processing.
 On top of that it provides a very easy to use API, very much similar to the original `packagist-api`,
-enriched with the comfort of [React PHP's Promises/A](https://github.com/reactphp/promise).
+enriched with the comfort of [ReactPHP's Promises](https://github.com/reactphp/promise).
 
 **Table of Contents**
 
@@ -52,7 +52,7 @@ See also the [examples](examples).
 ### Client
 
 The `Client` is responsible for assembling and sending HTTP requests to the remote Packagist API.
-It requires a [`Browser`](https://github.com/clue/php-buzz-react#browser) object
+It requires a [`Browser`](https://github.com/clue/reactphp-buzz#browser) object
 bound to the main [`EventLoop`](https://github.com/reactphp/event-loop#usage)
 in order to handle async requests:
 
@@ -64,7 +64,7 @@ $client = new Client($browser);
 ```
 
 If you need custom DNS, SSL/TLS or proxy settings, you can explicitly pass a
-custom [`Browser`](https://github.com/clue/php-buzz-react#browser) instance.
+custom [`Browser`](https://github.com/clue/reactphp-buzz#browser) instance.
 
 #### Promises
 
