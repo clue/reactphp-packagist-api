@@ -2,7 +2,7 @@
     "name": "clue/packagist-api-react",
     "description": "Simple async access to packagist.org's API, like listing project details, number of downloads etc., built on top of ReactPHP.",
     "keywords": ["packagist", "composer packages", "ReactPHP", "async"],
-    "homepage": "https://github.com/clue/php-packagist-api-react",
+    "homepage": "https://github.com/clue/reactphp-packagist-api",
     "license": "MIT",
     "authors": [
         {

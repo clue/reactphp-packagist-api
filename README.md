@@ -63,8 +63,26 @@ $browser = new Clue\React\Buzz\Browser($loop);
 $client = new Client($browser);
 ```
 
-If you need custom DNS, SSL/TLS or proxy settings, you can explicitly pass a
-custom [`Browser`](https://github.com/clue/reactphp-buzz#browser) instance.
+If you need custom connector settings (DNS resolution, TLS parameters, timeouts,
+proxy servers etc.), you can explicitly pass a custom instance of the
+[`ConnectorInterface`](https://github.com/reactphp/socket#connectorinterface)
+to the [`Browser`](https://github.com/clue/reactphp-buzz#browser) instance:
+
+```php
+$connector = new \React\Socket\Connector($loop, array(
+    'dns' => '127.0.0.1',
+    'tcp' => array(
+        'bindto' => '192.168.10.1:0'
+    ),
+    'tls' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false
+    )
+));
+
+$browser = new Browser($loop, $connector);
+$client = new Client($browser);
+```
 
 #### Promises
 
@@ -76,12 +94,15 @@ Sending requests uses a [Promise](https://github.com/reactphp/promise)-based int
 
 #### search()
 
-The `search($query, $filters = array())` method can be used to search packages matching the given query string and optionally matching the given filter parameter.
-It resolves with an array containing zero or more `Package` objects.
+The `search(string $query, array $filters = array()): PromiseInterface<Package[],Exception>` method can be used to
+search packages matching the given query string and optionally matching the given filter parameter.
+
+It resolves with an array containing zero or more [`Package`](#package) objects
+on success or rejects with an `Exception` on error.
 
 ```php
-$client->search('packagist')->then(function ($results) {
-    foreach ($results as $result) {
+$client->search('packagist')->then(function (array $packages) {
+    foreach ($packages as $package) {
         echo $package->getName() . PHP_EOL;
     }
 });
@@ -89,8 +110,11 @@ $client->search('packagist')->then(function ($results) {
 
 #### get()
 
-The `get($name)` method can be used to get package details for the given package name.
-It resolves with a single `Package` object.
+The `get(string $name): PromiseInterface<Package,Exception>` method can be used to
+get package details for the given package name.
+
+It resolves with a single [`Package`](#package) object
+on success or rejects with an `Exception` on error.
 
 ```php
 $client->get('clue/packagist-api-react')->then(function (Package $package) {
@@ -100,11 +124,14 @@ $client->get('clue/packagist-api-react')->then(function (Package $package) {
 
 #### all()
 
-The `all($filters = array())` method an be used to list all package names, optionally matching the given filter parameter.
-It resolves with an array of package names.
+The `all(array $filters = array()): PromiseInterface<string[],Exception>` method an be used to
+list all package names, optionally matching the given filter parameter.
+
+It resolves with an array of package names
+on success or rejects with an `Exception` on error.
 
 ```php
-$client->all(array('vendor' => 'clue'))->then(function ($list) {
+$client->all(array('vendor' => 'clue'))->then(function (array $names) {
     // array containing (among others) "clue/packagist-api-react"
 });
 ```
@@ -130,7 +157,7 @@ The `getDescription()` method can be used to the package description.
 The recommended way to install this library is [through Composer](https://getcomposer.org).
 [New to Composer?](https://getcomposer.org/doc/00-intro.md)
 
-This project follows [SemVer](http://semver.org/).
+This project follows [SemVer](https://semver.org/).
 This will install the latest supported version:
 
 ```bash
@@ -161,4 +188,7 @@ $ php vendor/bin/phpunit
 
 ## License
 
-MIT
+This project is released under the permissive [MIT license](LICENSE).
+
+> Did you know that I offer custom development services and issuing invoices for
+  sponsorships of releases and for contributions? Contact me (@clue) for details.

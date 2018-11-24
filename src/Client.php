@@ -2,9 +2,11 @@
 
 namespace Clue\React\Packagist\Api;
 
-use Packagist\Api\Result\Factory;
 use Clue\React\Buzz\Browser;
+use Packagist\Api\Result\Factory;
+use Packagist\Api\Result\Package;
 use Psr\Http\Message\ResponseInterface;
+use React\Promise\PromiseInterface;
 use Rize\UriTemplate;
 
 class Client
@@ -29,6 +31,24 @@ class Client
         $this->uri = $uri;
     }
 
+    /**
+     * Search packages matching the given query string and optionally matching the given filter parameter.
+     *
+     * It resolves with an array containing zero or more [`Package`](#package) objects
+     * on success or rejects with an `Exception` on error.
+     *
+     * ```php
+     * $client->search('packagist')->then(function (array $packages) {
+     *     foreach ($packages as $package) {
+     *         echo $package->getName() . PHP_EOL;
+     *     }
+     * });
+     * ```
+     *
+     * @param string $query
+     * @param array  $filters
+     * @return PromiseInterface<Package[],\Exception>
+     */
     public function search($query, array $filters = array())
     {
         $filters['q'] = $query;
@@ -59,6 +79,21 @@ class Client
         return $fetch($url);
     }
 
+    /**
+     * Get package details for the given package name.
+     *
+     * It resolves with a single [`Package`](#package) object
+     * on success or rejects with an `Exception` on error.
+     *
+     * ```php
+     * $client->get('clue/packagist-api-react')->then(function (Package $package) {
+     *     echo $package->getDescription();
+     * });
+     * ```
+     *
+     * @param string $package
+     * @return PromiseInterface<Package,\Exception>
+     */
     public function get($package)
     {
         return $this->respond(
@@ -71,6 +106,21 @@ class Client
         );
     }
 
+    /**
+     * List all package names, optionally matching the given filter parameter.
+     *
+     * It resolves with an array of package names
+     * on success or rejects with an `Exception` on error.
+     *
+     * ```php
+     * $client->all(array('vendor' => 'clue'))->then(function (array $names) {
+     *     // array containing (among others) "clue/packagist-api-react"
+     * });
+     * ```
+     *
+     * @param array $filters
+     * @return PromiseInterface<string[],\Exception>
+     */
     public function all(array $filters = array())
     {
         return $this->respond(
