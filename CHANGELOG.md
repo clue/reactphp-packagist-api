@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.0 (2019-02-20)
+
+*   Feature: Cancellation support, timeout option and improve long paginations.
+    (#14 by @clue)
+
+*   Improve documentation and update project homepage.
+    (#12 and #13 by @clue)
+
 ## 1.2.0 (2018-04-15)
 
 *   Feature: Forward compatibility with updated clue/buzz-react.
