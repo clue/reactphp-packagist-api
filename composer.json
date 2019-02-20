@@ -12,8 +12,8 @@
     ],
     "require": {
         "php": ">=5.3",
+        "clue/buzz-react": "^2.5",
         "knplabs/packagist-api": "~1.0",
-        "clue/buzz-react": "^2.0 || ^1.0 || ^0.5",
         "rize/uri-template": "^0.3"
     },
     "require-dev": {

@@ -18,6 +18,8 @@ enriched with the comfort of [ReactPHP's Promises](https://github.com/reactphp/p
 * [Usage](#usage)
   * [Client](#client)
     * [Promises](#promises)
+    * [Cancellation](#cancellation)
+    * [Timeouts](#timeouts)
     * [search()](#search)
     * [get()](#get)
     * [all()](#all)
@@ -92,6 +94,68 @@ Sending requests is async (non-blocking), so you can actually send multiple requ
 Packagist will respond to each request with a response message, the order is not guaranteed.
 Sending requests uses a [Promise](https://github.com/reactphp/promise)-based interface that makes it easy to react to when a request is fulfilled (i.e. either successfully resolved or rejected with an error).
 
+```php
+$client->get('clue/graph-composer')->then(
+    function ($result) {
+        // result received for get() function
+    },
+    function (Exception $e) {
+        // an error occured while executing the request
+    }
+});
+```
+
+#### Cancellation
+
+The returned Promise is implemented in such a way that it can be cancelled
+when it is still pending.
+Cancelling a pending promise will reject its value with an Exception and
+clean up any underlying resources.
+
+```php
+$promise = $client->get('clue/graph-composer');
+
+$loop->addTimer(2.0, function () use ($promise) {
+    $promise->cancel();
+});
+```
+
+#### Timeouts
+
+This library uses a very efficient HTTP implementation, so most API requests
+should usually be completed in mere milliseconds. However, when sending API
+requests over an unreliable network (the internet), there are a number of things
+that can go wrong and may cause the request to fail after a time. As such,
+timeouts are handled by the underlying HTTP library and this library respects
+PHP's `default_socket_timeout` setting (default 60s) as a timeout for sending the
+outgoing API request and waiting for a successful response and will otherwise
+cancel the pending request and reject its value with an Exception.
+
+Note that this timeout value covers creating the underlying transport connection,
+sending the API request, waiting for the Packagist service to process the request
+and receiving the full API response. To pass a custom timeout value, you can
+assign the underlying [`timeout` option](https://github.com/clue/reactphp-buzz#timeouts)
+like this:
+
+```php
+$browser = new Browser($loop);
+$browser = $browser->withOptions(array(
+    'timeout' => 10.0
+));
+
+$client = new Client($browser);
+
+$client->get('clue/graph-composer')->then(function ($result) {
+    // result received within 10 seconds maximum
+    var_dump($result);
+});
+```
+
+Similarly, you can use a negative timeout value to not apply a timeout at all
+or use a `null` value to restore the default handling. Note that the underlying
+connection may still impose a different timeout value. See also the underlying
+[`timeout` option](https://github.com/clue/reactphp-buzz#timeouts) for more details.
+
 #### search()
 
 The `search(string $query, array $filters = array()): PromiseInterface<Package[],Exception>` method can be used to
@@ -107,6 +171,12 @@ $client->search('packagist')->then(function (array $packages) {
     }
 });
 ```
+
+Note that this method follows Packagist's paginated search results which
+may contain a large number of matches depending on your search.
+Accordingly, this method sends one API request for each page which may
+take a while for the whole search to be completed. It is not uncommon to
+take around 5-10 seconds to fetch search results for 1000 matches.
 
 #### get()
 

@@ -65,6 +65,42 @@ class ClientTest extends TestCase
         $this->expectPromiseResolve($this->client->search('zenity'));
     }
 
+    public function testSearchRejectsWhenRequestRejects()
+    {
+        $this->browser->expects($this->once())->method('get')->willReturn(
+            $this->createRejectedPromise(new RuntimeException())
+        );
+
+        $promise = $this->client->search('foo');
+
+        $promise->then($this->expectCallableNever(), $this->expectCallableOnce());
+    }
+
+    public function testSearchCancelPendingPromiseWillCancelInitialRequest()
+    {
+        $deferred = new Deferred($this->expectCallableOnce());
+        $this->browser->expects($this->once())->method('get')->willReturn($deferred->promise());
+
+        $promise = $this->client->search('foo');
+        $promise->cancel();
+    }
+
+    public function testSearchCancelPendingPromiseWillCancelNextRequestWhenInitialIsCompleted()
+    {
+        $first = new Deferred($this->expectCallableNever());
+        $second = new Deferred($this->expectCallableOnce());
+        $this->browser->expects($this->exactly(2))->method('get')->willReturnOnConsecutiveCalls(
+            $first->promise(),
+            $second->promise()
+        );
+
+        $promise = $this->client->search('foo');
+
+        $first->resolve($this->createResponsePromise('{"results":[{"name":"clue\/zenity-react","description":"Build graphical desktop (GUI) applications in PHP","url":"https:\/\/packagist.org\/packages\/clue\/zenity-react","downloads":57,"favers":0,"repository":"https:\/\/github.com\/clue\/reactphp-zenity"}],"total":2, "next": ""}'));
+
+        $promise->cancel();
+    }
+
     public function testHttpError()
     {
         $this->setupBrowser('/packages/clue%2Finvalid.json', $this->createRejectedPromise(new RuntimeException('error')));
