@@ -6,6 +6,7 @@ use Clue\React\Buzz\Browser;
 use Packagist\Api\Result\Factory;
 use Packagist\Api\Result\Package;
 use Psr\Http\Message\ResponseInterface;
+use React\Promise\Deferred;
 use React\Promise\PromiseInterface;
 use Rize\UriTemplate;
 
@@ -45,6 +46,12 @@ class Client
      * });
      * ```
      *
+     * Note that this method follows Packagist's paginated search results which
+     * may contain a large number of matches depending on your search.
+     * Accordingly, this method sends one API request for each page which may
+     * take a while for the whole search to be completed. It is not uncommon to
+     * take around 5-10 seconds to fetch search results for 1000 matches.
+     *
      * @param string $query
      * @param array  $filters
      * @return PromiseInterface<Package[],\Exception>
@@ -63,20 +70,28 @@ class Client
         $results = array();
         $that = $this;
 
-        $fetch = function ($url) use (&$results, $that, &$fetch) {
-            return $that->request($url)->then(function (ResponseInterface $response) use (&$results, $that, $fetch) {
+        $pending = null;
+        $deferred = new Deferred(function () use (&$pending) {
+            $pending->cancel();
+        });
+
+        $fetch = function ($url) use (&$results, $that, &$fetch, $deferred, &$pending) {
+            $pending = $that->request($url)->then(function (ResponseInterface $response) use (&$results, $that, $fetch, $deferred) {
                 $parsed = $that->parse((string)$response->getBody());
                 $results = array_merge($results, $that->create($parsed));
 
                 if (isset($parsed['next'])) {
-                    return $fetch($parsed['next']);
+                    $fetch($parsed['next']);
                 } else {
-                    return $results;
+                    $deferred->resolve($results);
                 }
+            }, function ($e) use ($deferred) {
+                $deferred->reject($e);
             });
         };
+        $fetch($url);
 
-        return $fetch($url);
+        return $deferred->promise();
     }
 
     /**
