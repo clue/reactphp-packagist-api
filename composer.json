@@ -21,5 +21,8 @@
     },
     "autoload": {
         "psr-4": { "Clue\\React\\Packagist\\Api\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Clue\\Tests\\React\\Api\\": "tests/" }
     }
 }
