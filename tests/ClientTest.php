@@ -1,5 +1,7 @@
 <?php
 
+namespace Clue\Tests\React\Api;
+
 use Clue\React\Packagist\Api\Client;
 use React\Promise\Deferred;
 use RingCentral\Psr7\Response;
@@ -68,7 +70,7 @@ class ClientTest extends TestCase
     public function testSearchRejectsWhenRequestRejects()
     {
         $this->browser->expects($this->once())->method('get')->willReturn(
-            $this->createRejectedPromise(new RuntimeException())
+            $this->createRejectedPromise(new \RuntimeException())
         );
 
         $promise = $this->client->search('foo');
@@ -103,7 +105,7 @@ class ClientTest extends TestCase
 
     public function testHttpError()
     {
-        $this->setupBrowser('/packages/clue%2Finvalid.json', $this->createRejectedPromise(new RuntimeException('error')));
+        $this->setupBrowser('/packages/clue%2Finvalid.json', $this->createRejectedPromise(new \RuntimeException('error')));
 
         $this->expectPromiseReject($this->client->get('clue/invalid'));
     }
