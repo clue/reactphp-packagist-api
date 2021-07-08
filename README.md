@@ -1,4 +1,6 @@
-# clue/reactphp-packagist-api [![Build Status](https://travis-ci.org/clue/reactphp-packagist-api.svg?branch=master)](https://travis-ci.org/clue/reactphp-packagist-api)
+# clue/reactphp-packagist-api
+
+[![CI status](https://github.com/clue/reactphp-packagist-api/workflows/CI/badge.svg)](https://github.com/clue/reactphp-packagist-api/actions)
 
 Simple async access to packagist.org's API, like listing project details, number of downloads etc.,
 built on top of [ReactPHP](https://reactphp.org/).
