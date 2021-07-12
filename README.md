@@ -1,6 +1,7 @@
 # clue/reactphp-packagist-api
 
 [![CI status](https://github.com/clue/reactphp-packagist-api/workflows/CI/badge.svg)](https://github.com/clue/reactphp-packagist-api/actions)
+[![installs on Packagist](https://img.shields.io/packagist/dt/clue/packagist-api-react?color=blue&label=install%20on%20Packagist)](https://packagist.org/packages/clue/packagist-api-react)
 
 Simple async access to packagist.org's API, like listing project details, number of downloads etc.,
 built on top of [ReactPHP](https://reactphp.org/).
