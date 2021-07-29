@@ -12,7 +12,10 @@ class ClientTest extends TestCase
     private $browser;
     private $client;
 
-    public function setUp()
+    /**
+     * @before
+     */
+    public function setUpClient()
     {
         $this->browser = $this->getMockBuilder('Clue\React\Buzz\Browser')->disableOriginalConstructor()->getMock();
         $this->browser->expects($this->any())->method('withBase')->willReturn($this->browser);
